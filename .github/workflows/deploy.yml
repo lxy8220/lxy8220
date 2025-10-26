@@ -1,0 +1,30 @@
+name: Deploy to Oracle Server
+
+on:
+  push:
+    branches:
+      - main # 每次推送 main 分支自动触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@V4
+
+      - name: set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chomd 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 131.186.61.208 >> ~/.ssh/known_hosts
+
+      - name: Deploy to Oracle
+        run: |
+          ssh -i ~/.ssh/id_ed25519 ubuntu@131.186.61.208 "
+            cd /home/ubuntu/mnt/py &&
+            git pull origin main &&
+            /home/ubuntu/pyenv/bin/python -m pip install -r requirements.txt &&
+            sudo systemctl restart myapp.service
+          "
