@@ -23,7 +23,7 @@ jobs:
       - name: Deploy to Oracle
         run: |
           ssh -i ~/.ssh/id_ed25519 ubuntu@131.186.61.208 "
-            cd /home/ubuntu/mnt/py &&
+            cd /home/ubuntu/mnt/py/lxy8220/spider &&
             git pull origin main &&
             /home/ubuntu/pyenv/bin/python -m pip install -r requirements.txt &&
             sudo systemctl restart myapp.service
