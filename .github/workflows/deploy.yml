@@ -26,6 +26,5 @@ jobs:
             cd /home/ubuntu/mnt/py/lxy8220/spider &&
             git pull origin main &&
             /home/ubuntu/pyenv/bin/python -m pip install -r \
-            /home/ubuntu/mnt/py/lxy8220/spider/requirements.txt &&
-            sudo systemctl restart myapp.service
+            /home/ubuntu/mnt/py/lxy8220/spider/requirements.txt
           "
