@@ -170,7 +170,7 @@ def format_wechat_message(data_list):
 
 def main():
     try:
-        print("程序执行start・・・")
+        print("程序执行开始・・・")
         cnt = 0
         max_cnt = 3
         while cnt < max_cnt:
@@ -203,7 +203,7 @@ def main():
     except Exception as e:
         print("⚠️ 用户中断程序，正在安全退出...", e)
     finally:
-        print("程序执行end・・・")
+        print("程序执行结束・・・")
 
 
 if __name__ == "__main__":
