@@ -11,20 +11,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@V4
+        uses: actions/checkout@v4
 
       - name: set up SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chomd 600 ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H 131.186.61.208 >> ~/.ssh/known_hosts
 
       - name: Deploy to Oracle
         run: |
           ssh -i ~/.ssh/id_ed25519 ubuntu@131.186.61.208 "
-            cd /home/ubuntu/mnt/py &&
+            cd /home/ubuntu/mnt/py/lxy8220/spider &&
             git pull origin main &&
-            /home/ubuntu/pyenv/bin/python -m pip install -r requirements.txt &&
-            sudo systemctl restart myapp.service
+            /home/ubuntu/pyenv/bin/python -m pip install -r \
+            /home/ubuntu/mnt/py/lxy8220/spider/requirements.txt
           "
