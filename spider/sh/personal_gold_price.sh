@@ -7,7 +7,7 @@
 PYTHON_PATH="/home/ubuntu/pyenv/bin/python"
 
 # Python 脚本路径
-SCRIPT_PATH="/home/ubuntu/mnt/py/lxy8220/spider/personal_gold_spider.py"
+SCRIPT_PATH="/home/ubuntu/mnt/py/lxy8220/spider/personal_gold_price.py"
 
 # 日志文件夹路径
 LOG_DIR="/home/ubuntu/mnt/py/lxy8220/spider/log"
@@ -16,4 +16,4 @@ LOG_DIR="/home/ubuntu/mnt/py/lxy8220/spider/log"
 DATE=$(date +"%Y-%m-%d")
 
 # 执行 Python 脚本并输出日志
-$PYTHON_PATH $SCRIPT_PATH >> "$LOG_DIR/tanaka_gold_spider_${DATE}.log" 2>&1
+$PYTHON_PATH $SCRIPT_PATH >> "$LOG_DIR/personal_gold_price_${DATE}.log" 2>&1

@@ -7,7 +7,7 @@
 PYTHON_PATH="/home/ubuntu/pyenv/bin/python"
 
 # Python 脚本路径
-SCRIPT_PATH="/home/ubuntu/mnt/py/lxy8220/spider/tanaka_gold_spider.py"
+SCRIPT_PATH="/home/ubuntu/mnt/py/lxy8220/spider/tanaka_gold_price.py"
 
 # 日志文件夹路径
 LOG_DIR="/home/ubuntu/mnt/py/lxy8220/spider/log"
@@ -16,7 +16,7 @@ LOG_DIR="/home/ubuntu/mnt/py/lxy8220/spider/log"
 DATE=$(date +"%Y-%m-%d")
 
 # 创建日志文件名
-LOG_FILE="${LOG_DIR}/tanaka_gold_spider_${DATE}.log"
+LOG_FILE="${LOG_DIR}/tanaka_gold_price_${DATE}.log"
 
 # 当前时间（小时和分钟）
 HOUR=$(date +%H)
