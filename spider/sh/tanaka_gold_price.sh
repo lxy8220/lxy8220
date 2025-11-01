@@ -18,7 +18,7 @@ DATE=$(date +"%Y-%m-%d")
 # 创建日志文件名
 LOG_FILE="${LOG_DIR}/tanaka_gold_price_${DATE}.log"
 
-# 当前时间（小时和分钟）
+# 当前时间（小时和分钟） 
 HOUR=$(date +%H)
 MINUTE=$(date +%M)
 
