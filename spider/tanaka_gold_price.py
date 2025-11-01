@@ -52,6 +52,7 @@ def get_last_record():
         return df.iloc[-1].to_dict()
     except Exception as e:
         print("获取CSV最后一行数据失败: ", e)
+        return None
 
 
 def get_file_path():
