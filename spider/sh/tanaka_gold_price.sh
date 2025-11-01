@@ -19,10 +19,8 @@ DATE=$(date +"%Y-%m-%d")
 LOG_FILE="${LOG_DIR}/tanaka_gold_price_${DATE}.log"
 
 # 当前时间（小时和分钟）
-#HOUR=$(date +%H)
-#MINUTE=$(date +%M)
-HOUR=09
-MINUTE=30
+HOUR=$(date +%H)
+MINUTE=$(date +%M)
 
 if [[ ( "$HOUR" == "09" && "$MINUTE" == "30" ) || ( "$HOUR" == "14" && "$MINUTE" == "00" ) ]]; then
   # 执行 Python 脚本并输出日志
