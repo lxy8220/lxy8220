@@ -80,8 +80,8 @@ def main():
             print("main()_没有抓取到数据")
             return None
 
-        cnt = os.getenv("CNT")
-        max_cnt = os.getenv("MAX_CNT")
+        cnt = 0
+        max_cnt = int(os.getenv("MAX_CNT", "3"))
         new_data = data_list[0]
         while cnt < max_cnt:
             last_record = get_last_record()
