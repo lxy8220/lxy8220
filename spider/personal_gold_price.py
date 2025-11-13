@@ -78,7 +78,7 @@ def main():
     logging.info(f"rst: {rst}")
 
     dt_time = datetime.strptime(rst["dt_time"], "%Y-%m-%d %H:%M")
-    if dt_time.time() == time(11, 30) and dt_time.date() == datetime.now().date():
+    if dt_time.time() == time(14, 00) and dt_time.date() == datetime.now().date():
         data = {
             "date": rst["dt_time"],
             "price": rst["rate"]
