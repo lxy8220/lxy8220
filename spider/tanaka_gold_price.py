@@ -1,3 +1,4 @@
+import logging
 import os
 import time
 from datetime import datetime
@@ -10,6 +11,11 @@ import telegram_client as tele_cli
 import wechat_client as wechat_cli
 
 load_dotenv()
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(asctime)s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 
 # 定义一个函数(抓取今日金价)
@@ -35,30 +41,30 @@ def fetch_today_gold_price():
 
         return data_list
     except Exception as e:
-        print("抓取失败:", e)
+        logging.info("抓取失败: %s", e)
         return {}
 
 
 def get_last_record():
-    print("读取CSV文件开始・・・")
+    logging.info("读取CSV文件开始・・・")
     file_path = get_file_path()
     try:
         df = pd.read_csv(file_path, encoding="utf-8-sig")
         if df.empty:
-            print("CSV 文件为空")
+            logging.info("CSV 文件为空")
             return None
 
         # 表格对象的最后一行，并把结果转为字典
         return df.iloc[-1].to_dict()
     except Exception as e:
-        print("获取CSV最后一行数据失败: ", e)
+        logging.info("获取CSV最后一行数据失败: %s", e)
         return None
 
 
 def get_file_path():
     file_path = os.getenv("CSV_FILE")
     if not file_path or not os.path.exists(file_path):
-        print("CSV 文件不存在或路径未设置")
+        logging.info("CSV 文件不存在或路径未设置")
         return None
     return file_path
 
@@ -74,10 +80,10 @@ def save_to_csv(data):
 
 def main():
     try:
-        print("程序执行开始・・・")
+        logging.info("程序执行开始・・・")
         data_list = fetch_today_gold_price()
         if not data_list:
-            print("main()_没有抓取到数据")
+            logging.info("main()_没有抓取到数据")
             return None
 
         cnt = 0
@@ -86,26 +92,26 @@ def main():
         while cnt < max_cnt:
             last_record = get_last_record()
             if not last_record:
-                print("获取CSV文件数据失败")
+                logging.info("获取CSV文件数据失败")
                 return None
             if last_record["公表時間"] == new_data["dt_time"]:
-                print(f"⏸ 没有新数据，等待 3 分钟后再检测 (第 {cnt}/{max_cnt} 次)")
+                logging.info(f"⏸ 没有新数据，等待 3 分钟后再检测 (第 {cnt}/{max_cnt} 次)")
                 cnt += 1
                 time.sleep(3 * 60)  # 等 3 分钟再检测
             else:
-                print("✅ 检测到新数据：", data_list)
+                logging.info("✅ 检测到新数据：%s", data_list)
                 save_to_csv(data_list)
                 tele_cli.send_message(data_list)
                 wechat_cli.send_message(data_list)
                 break
         else:
-            print("🔁 已检测 3 次，没有发现新数据，程序结束。")
+            logging.info("🔁 已检测 3 次，没有发现新数据，程序结束。")
     except KeyboardInterrupt:
-        print("⚠️ 用户中断程序，正在安全退出...")
+        logging.info("⚠️ 用户中断程序，正在安全退出...")
     except Exception as e:
-        print("❌ 程序异常退出:", e)
+        logging.info("❌ 程序异常退出:", e)
     finally:
-        print("程序执行结束・・・")
+        logging.info("程序执行结束・・・")
 
 
 if __name__ == "__main__":

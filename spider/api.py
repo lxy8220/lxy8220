@@ -1,10 +1,11 @@
 import os
+from typing import Optional
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def fetch_soup(env_key: str, timeout: int = 10) -> BeautifulSoup | None:
+def fetch_soup(env_key: str, timeout: int = 10) -> Optional[BeautifulSoup]:
     try:
         url = os.getenv(env_key)
         res = requests.get(url, timeout=timeout)
