@@ -22,7 +22,7 @@ LOG_FILE="${LOG_DIR}/tanaka_gold_price_${DATE}.log"
 HOUR=$(date +%H)
 MINUTE=$(date +%M)
 
-if [[ ( "$HOUR" == "09" && "$MINUTE" == "30" ) || ( "$HOUR" == "14" && "$MINUTE" == "00" ) ]]; then
+if [[ ( "$HOUR" == "09" && "$MINUTE" == "31" ) || ( "$HOUR" == "14" && "$MINUTE" == "01" ) ]]; then
   # 执行 Python 脚本并输出日志
   $PYTHON_PATH $SCRIPT_PATH >> $LOG_FILE 2>&1
 fi
