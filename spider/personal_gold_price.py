@@ -59,7 +59,7 @@ def write_json(data):
 
 
 def read_json_last_record():
-    file_path = "base_price.json"
+    file_path = os.environ["JSON_PATH"]
     with open(file_path, "r", encoding="UTF-8") as f:
         lines = [line.strip() for line in f if line.strip()]
 
