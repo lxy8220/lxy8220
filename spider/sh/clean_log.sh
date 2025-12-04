@@ -7,17 +7,17 @@
 LOG_DIR="/home/ubuntu/mnt/py/lxy8220/spider/log"
 
 # 保存天数
-KEEP_DAYS=7
+KEEP_DAYS=30
 
 echo "🧹 开始清理日志目录：$LOG_DIR"
 echo "⏳ 保留最近 $KEEP_DAYS 天的日志文件..."
 
-if [! - d "$LOG_DIR"]; then
+if [ ! - d "$LOG_DIR" ]; then
   echo "⚠️ 日志目录不存在：$LOG_DIR"
   exit 1
 fi
 
 # 删除7天以前的日志文件
-find "$LOG_DIR" -type f -name "*/log" -mtime +$KEEP_DAYS -exec rm -f {} /;
+find "$LOG_DIR" -type f -name "*.log" -mtime +$KEEP_DAYS -exec rm -f {} \;
 
 echo "✅ 日志清理完成。"
