@@ -18,13 +18,8 @@ DATE=$(date +"%Y-%m-%d")
 # 创建日志文件名
 LOG_FILE="${LOG_DIR}/tanaka_gold_price_${DATE}.log"
 
-# 当前时间（小时和分钟）
-HOUR=$(date +%H)
-MINUTE=$(date +%M)
+# 执行 Python 脚本并输出日志
+$PYTHON_PATH $SCRIPT_PATH >> $LOG_FILE 2>&1
 
-if [[ ( "$HOUR" == "09" && "$MINUTE" == "31" ) || ( "$HOUR" == "14" && "$MINUTE" == "01" ) ]]; then
-  # 执行 Python 脚本并输出日志
-  $PYTHON_PATH $SCRIPT_PATH >> $LOG_FILE 2>&1
-fi
 
 
