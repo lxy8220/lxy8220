@@ -12,7 +12,7 @@ KEEP_DAYS=30
 echo "🧹 开始清理日志目录：$LOG_DIR"
 echo "⏳ 保留最近 $KEEP_DAYS 天的日志文件..."
 
-if [ ! - d "$LOG_DIR" ]; then
+if [ ! -d "$LOG_DIR" ]; then
   echo "⚠️ 日志目录不存在：$LOG_DIR"
   exit 1
 fi
