@@ -32,11 +32,11 @@ COMMON_DATA = {
     "floorspace_high": "",
     "years": "",
     "mode": "eki",
-    "eki": "1742",
-    # "eki": "1896", # 亀戸
+    # "eki": "1742",
+    "eki": "1896", # 亀戸
     "line": "4500",
-    "line_station": "4500_1742",
-    # "line_station": "4500_1896",  # 亀戸
+    # "line_station": "4500_1742",
+    "line_station": "4500_1896",  # 亀戸
     "block": "kanto",
     "tdfk": "",
     "rireki_tdfk": "13",
@@ -83,12 +83,12 @@ def main():
     logging.info("查询开始・・・")
 
     room_rst = post_ur_room_fetch()
-    logging.info(f"room_rst: {room_rst}")
+    # logging.info(f"room_rst: {room_rst}")
 
     if room_rst:
         logging.info("★★★快上号，有新房了★★★")
         adr_rst = post_ur_address_fetch()
-        logging.info(f"adr_rst: {adr_rst}")
+        # logging.info(f"adr_rst: {adr_rst}")
         send_message(room_rst, adr_rst)
         logging.info("★★★快上号，有新房了★★★")
     else:
