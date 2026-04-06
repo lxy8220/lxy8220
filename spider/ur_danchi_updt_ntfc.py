@@ -82,6 +82,8 @@ def post_ur_room_fetch():
 def main():
     logging.info("查询开始・・・")
 
+    target_str = "江東区亀戸2-6"
+
     room_rst = post_ur_room_fetch()
     # logging.info(f"room_rst: {room_rst}")
 
@@ -89,8 +91,12 @@ def main():
         logging.info("★★★快上号，有新房了★★★")
         adr_rst = post_ur_address_fetch()
         # logging.info(f"adr_rst: {adr_rst}")
-        send_message(room_rst, adr_rst)
-        logging.info("★★★快上号，有新房了★★★")
+        if target_str in adr_rst[0].get("place", ""):
+            send_message(room_rst, adr_rst)
+            logging.info("★★★快上号，有新房了★★★")
+        else:
+            logging.info(f"place: {adr_rst[0].get('place')}")
+            logging.info("残念ながら，亀戸２丁目の団地ではない・・・・")
     else:
         logging.info("◆◆◆房间数为空◆◆◆")
         return None
